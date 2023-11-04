@@ -1,3 +1,13 @@
+<?php
+session_start();
+error_reporting(0);
+$varsession = $_SESSION['email'];
+if ($varsession == null || $varsession == '') {
+    header("Location:http://localhost/tp2/");
+}
+
+// session_destroy();
+?>
 <!DOCTYPE html>
 <html lang="es">
 

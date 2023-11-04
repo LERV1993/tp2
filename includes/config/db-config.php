@@ -52,7 +52,7 @@ function conectarBaseDeDatos()
 
     //Crear la tabla contacto si no existe 
     $sql = "CREATE TABLE IF NOT EXISTS contacto (
-        id int AUTO_INCREMENT primary key,
+        id int AUTO_INCREMENT PRIMARY KEY,
         nombre VARCHAR(30),
         email varchar(30),
         telefono int,
@@ -62,25 +62,28 @@ function conectarBaseDeDatos()
         die("Error al crear la tabla 'contacto' : " . $conn->error);
     }
 
-
-    //Adaptar a las tablas necesarias para cada parte de la página
-    /* 
-      $sql = "CREATE TABLE IF NOT EXISTS mod_stock (
+    //Crear la tabla de usuarios
+    $sql = "CREATE TABLE IF NOT EXISTS usuarios (
         id INT AUTO_INCREMENT PRIMARY KEY,
-        id_old INT,
-        name_old VARCHAR(30),
-        sn_old VARCHAR(30),
-        cant_old INT,
-        id_new INT,
-        name_new VARCHAR(30),
-        sn_new VARCHAR(30),
-        cant_new INT,
-        fecha DATE,
-        motivo VARCHAR(30)
+        email VARCHAR(30),
+        password VARCHAR(255)
     )";
     if ($conn->query($sql) !== TRUE) {
-        die("Error al crear la tabla 'mod_stock': " . $conn->error);
-    }*/
+        die("Error al crear la tabla 'usuarios': " . $conn->error);
+    }
+
+    $admin = "admin@admin.com";
+    $passw = password_hash("admin123", PASSWORD_DEFAULT);
+
+    $sql = "SELECT * FROM usuarios WHERE email = '$admin'";
+    $result = $conn->query($sql);
+    if ($result->num_rows < 1) {
+        $sql ="INSERT INTO usuarios (email, password )VALUE ('$admin', '$passw')";
+        $result = $conn->query($sql);
+    }
+
+    
+
 
     // Devolver la conexión
     return $conn;
@@ -88,5 +91,3 @@ function conectarBaseDeDatos()
 
 // Llamar a la función para obtener la conexión a la base de datos
 $conexion = conectarBaseDeDatos();
-
-?>

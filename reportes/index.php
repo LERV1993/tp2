@@ -1,4 +1,10 @@
 <?php
+session_start();
+error_reporting(0);
+$varsession = $_SESSION['email'];
+if ($varsession == null || $varsession == '') {
+    header("Location:http://localhost/tp2/");
+}
 
 require("../includes/config/db-config.php");
 

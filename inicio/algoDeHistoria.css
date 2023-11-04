@@ -1,0 +1,81 @@
+body,style{
+  background-color: rgb(147, 223, 147);
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+header{
+  background-color: dodgerblue;
+  margin-top: 15px;
+  margin-left: 4px;
+  border-radius: 25px;
+  border-top-left-radius: 75px;
+  border-bottom-left-radius: 75px;
+  font-size: x-large;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  
+  .logo{
+    margin-top: 8px;
+    margin-left: 8px;
+    border-radius: 70%;
+    height: auto;
+    width: 10%;
+  }
+}
+
+div h2{
+  font-family: 'Courier New', Courier, monospace;
+  text-decoration-line:underline;
+  margin-left: 7px;
+}
+div h3{
+  margin-left: 95px;
+}
+.parrafo1{
+  margin-left: 180px;
+  width: 75%;
+  text-align: justify;
+}
+#meta{
+  margin-left: 7px;
+  margin-top: 80px;
+  font-family: 'Courier New', Courier, monospace; 
+}
+
+.parrafo2{
+  margin-top: 30px;
+  margin-left: 35px;
+  margin-right: 5%;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  text-align: justify;
+}
+.nuestraMeta{
+  display: flex;
+}
+.logoCuadrado{
+  margin-left: 0px;
+  margin-right: 55px;
+}
+.crecimiento{
+  margin: 6.5%;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: xx-large;
+}
+.cierre img{
+  width:250px;
+  height: 350px;
+  margin-left: 29px;
+}
+.cierre{
+  display: flex;
+  margin-bottom: 70px;
+}
+#fEmpresa{
+  margin-left: 55px;
+}
+.agradecimiento{
+  font-size: xx-large;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  margin-left: 160px;
+  margin-top: 12%;
+}
