@@ -1,10 +1,10 @@
-body,style{
-  background-color: rgb(147, 223, 147);
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+body {
+  background-image: linear-gradient(135deg, var(--blue), var(--green));
+  height: 100%;
+  width: 100%;
 }
-header{
+
+header {
   background-color: dodgerblue;
   margin-top: 15px;
   margin-left: 4px;
@@ -12,9 +12,9 @@ header{
   border-top-left-radius: 75px;
   border-bottom-left-radius: 75px;
   font-size: x-large;
-  font-family:Georgia, 'Times New Roman', Times, serif;
-  
-  .logo{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+
+  .logo {
     margin-top: 8px;
     margin-left: 8px;
     border-radius: 70%;
@@ -23,59 +23,76 @@ header{
   }
 }
 
-div h2{
+div h2 {
   font-family: 'Courier New', Courier, monospace;
-  text-decoration-line:underline;
+  text-decoration-line: underline;
   margin-left: 7px;
 }
-div h3{
+
+div h3 {
   margin-left: 95px;
 }
-.parrafo1{
+
+.parrafo1 {
   margin-left: 180px;
   width: 75%;
   text-align: justify;
 }
-#meta{
+
+#meta {
   margin-left: 7px;
   margin-top: 80px;
-  font-family: 'Courier New', Courier, monospace; 
+  font-family: 'Courier New', Courier, monospace;
 }
 
-.parrafo2{
+.parrafo2 {
   margin-top: 30px;
   margin-left: 35px;
   margin-right: 5%;
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   text-align: justify;
 }
-.nuestraMeta{
+
+.nuestraMeta {
   display: flex;
 }
-.logoCuadrado{
+
+.logoCuadrado {
   margin-left: 0px;
   margin-right: 55px;
 }
-.crecimiento{
+
+.crecimiento {
   margin: 6.5%;
   font-family: 'Courier New', Courier, monospace;
   font-size: xx-large;
 }
-.cierre img{
-  width:250px;
+
+.cierre img {
+  width: 250px;
   height: 350px;
   margin-left: 29px;
 }
-.cierre{
+
+.cierre {
   display: flex;
   margin-bottom: 70px;
 }
-#fEmpresa{
+
+#fEmpresa {
   margin-left: 55px;
 }
-.agradecimiento{
+
+.agradecimiento {
   font-size: xx-large;
   font-family: Georgia, 'Times New Roman', Times, serif;
   margin-left: 160px;
   margin-top: 12%;
+}
+.agradecimiento a:hover{
+
+    margin-left: 0.5rem;
+    color: blueviolet;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 2.5rem;
 }

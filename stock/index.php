@@ -61,15 +61,15 @@ if ($varsession == null || $varsession == '') {
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="/tp2/gestion-usuarios/index.html">Gestión de usuarios</a>
+                            <a class="nav-link" href="/tp2/gestion-usuarios/">Gestión de usuarios</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="/tp2/reportes/index.html">Reportes</a>
+                            <a class="nav-link" href="/tp2/reportes/">Reportes</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link active" href="/tp2/stock/index.html">Stock</a>
+                            <a class="nav-link active" href="/tp2/stock/">Stock</a>
                         </li>
 
                         <li class="nav-item">

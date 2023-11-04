@@ -23,8 +23,7 @@ if ($varsession == null || $varsession == '') {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 
 <body style="min-height: 100vh;">
@@ -32,18 +31,20 @@ if ($varsession == null || $varsession == '') {
     <nav class="navbar bg-body-tertiary fixed-top" style="padding: 0;">
 
         <div class="container-fluid">
+            
+            <div>
+                <a class="navbar-brand" href="#">
+                    <img class="imageNav" src="../images/favicon.png" alt="logo">
+                </a>
 
-            <a class="navbar-brand" href="#">
-                <img class="imageNav" src="../images/favicon.png" alt="logo">
-            </a>
+                <a class="btn btn-warning m-1" href="../includes/api/auth-api/logout.php"> Cerrar session </a>
+            </div>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-                aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
-                aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
 
                 <div class="offcanvas-header">
                     <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
@@ -59,15 +60,15 @@ if ($varsession == null || $varsession == '') {
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link active" href="/tp2/gestion-usuarios/index.html">Gestión de usuarios</a>
+                            <a class="nav-link active" href="/tp2/gestion-usuarios/">Gestión de usuarios</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="/tp2/reportes/index.html">Reportes</a>
+                            <a class="nav-link" href="/tp2/reportes/">Reportes</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="/tp2/stock/index.html">Stock</a>
+                            <a class="nav-link" href="/tp2/stock/">Stock</a>
                         </li>
 
                         <li class="nav-item">
@@ -98,8 +99,7 @@ if ($varsession == null || $varsession == '') {
 
         <div class="cardBody">
 
-            <select id="selectModType" class="form-select mb-3" aria-label="Default select example"
-            onchange="cangeForm()">
+            <select id="selectModType" class="form-select mb-3" aria-label="Default select example" onchange="cangeForm()">
                 <option selected>Seleccione tipo de gestion</option>
                 <option value="C">Crear usuario</option>
                 <option value="D">Eliminar usuario</option>
@@ -195,7 +195,7 @@ if ($varsession == null || $varsession == '') {
                 </select>
 
             </form>
-            
+
 
         </div>
 
@@ -223,12 +223,8 @@ if ($varsession == null || $varsession == '') {
     </section>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
     <script src="usuarios.js"></script>
 </body>
 

@@ -35,9 +35,13 @@ if ($varsession == null || $varsession == '') {
 
             <div class="container-fluid">
 
-                <a class="navbar-brand" href="#">
-                    <img class="imageNav" src="../images/favicon.png" alt="logo">
-                </a>
+                <div>
+                    <a class="navbar-brand" href="#">
+                        <img class="imageNav" src="../images/favicon.png" alt="logo">
+                    </a>
+
+                    <a class="btn btn-warning m-1" href="../includes/api/auth-api/logout.php"> Cerrar session </a>
+                </div>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -59,19 +63,19 @@ if ($varsession == null || $varsession == '') {
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="/tp2/gestion-usuarios/index.html">Gestión de usuarios</a>
+                                <a class="nav-link" href="/tp2/gestion-usuarios/">Gestión de usuarios</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="/tp2/reportes/index.html">Reportes</a>
+                                <a class="nav-link" href="/tp2/reportes/">Reportes</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="/tp2/stock/index.html">Stock</a>
+                                <a class="nav-link" href="/tp2/stock/">Stock</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link active" href="/tp2/contacto/">Contacto</a>
+                                <a class="nav-link" href="/tp2/contacto/">Contacto</a>
                             </li>
 
                             <li class="nav-item">

@@ -3,7 +3,7 @@ session_start();
 error_reporting(0);
 $varsession = $_SESSION['email'];
 if ($varsession == null || $varsession == '') {
-    header("Location:http://localhost/tp2/");
+  header("Location:http://localhost/tp2/");
 }
 
 // session_destroy();
@@ -42,7 +42,7 @@ if (isset($_POST['ean']) > 0) {
     <script type="text/javascript">
       alert("Número de serie ya registrado verifique el stock.");
     </script>';
-    
+
     <?php
   } else {
     $sql = "INSERT INTO productos (name,sn,cant) VALUE ('$prod','$ean','$cant ')";
@@ -64,9 +64,13 @@ if (isset($_POST['ean']) > 0) {
 
     <div class="container-fluid">
 
-      <a class="navbar-brand" href="#">
-        <img class="imageNav" src="../images/favicon.png" alt="logo">
-      </a>
+      <div>
+        <a class="navbar-brand" href="#">
+          <img class="imageNav" src="../images/favicon.png" alt="logo">
+        </a>
+
+        <a class="btn btn-warning m-1" href="../includes/api/auth-api/logout.php"> Cerrar session </a>
+      </div>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -88,15 +92,15 @@ if (isset($_POST['ean']) > 0) {
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="/tp2/gestion-usuarios/index.html">Gestión de usuarios</a>
+              <a class="nav-link" href="/tp2/gestion-usuarios/">Gestión de usuarios</a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="/tp2/reportes/index.html">Reportes</a>
+              <a class="nav-link" href="/tp2/reportes/">Reportes</a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="/tp2/stock/index.html">Stock</a>
+              <a class="nav-link" href="/tp2/stock/">Stock</a>
             </li>
 
             <li class="nav-item">

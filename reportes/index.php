@@ -42,16 +42,14 @@ $conexion->close();
 
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
     <!--dataTables estilo bootstrap CSS-->
     <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.bootstrap4.min.css" rel="stylesheet">
 
     <!--font awesome-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
-        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
 
 
@@ -67,17 +65,19 @@ $conexion->close();
 
         <div class="container-fluid">
 
-            <a class="navbar-brand" href="#">
-                <img class="imageNav" src="../images/favicon.png" alt="logo">
-            </a>
+            <div>
+                <a class="navbar-brand" href="#">
+                    <img class="imageNav" src="../images/favicon.png" alt="logo">
+                </a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-                aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                <a class="btn btn-warning m-1" href="../includes/api/auth-api/logout.php"> Cerrar session </a>
+            </div>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
-                aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
 
                 <div class="offcanvas-header">
                     <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
@@ -93,19 +93,19 @@ $conexion->close();
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="/tp2/gestion-usuarios/index.html">Gestión de usuarios</a>
+                            <a class="nav-link" href="/tp2/gestion-usuarios/">Gestión de usuarios</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="/tp2/reportes/index.php">Reportes</a>
+                            <a class="nav-link active" href="/tp2/reportes/">Reportes</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="/tp2/stock/index.html">Stock</a>
+                            <a class="nav-link" href="/tp2/stock/">Stock</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link active" href="/tp2/contacto/">Contacto</a>
+                            <a class="nav-link" href="/tp2/contacto/">Contacto</a>
                         </li>
 
                         <li class="nav-item">
@@ -126,9 +126,9 @@ $conexion->close();
 
 
     <div class="container">
-    <h1> Reportes modificados de Stock </h1>
+        <h1> Reportes modificados de Stock </h1>
         <div id="fondo" class="row">
-            <div  class="col-12">
+            <div class="col-12">
                 <div class="table-responsive">
                     <table id="tablaMod" class="table table-striped table-bordered" style="width:100%">
                         <thead class="text-center">
@@ -196,12 +196,9 @@ $conexion->close();
     </div>
 
     <!-- jQuery, Popper.js, Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 
     <!-- datatables JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
@@ -223,7 +220,7 @@ $conexion->close();
 
 
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('#tablaMod').DataTable();
         });
     </script>
@@ -231,9 +228,7 @@ $conexion->close();
 
 
     <script src="https://kit.fontawesome.com/ce1f10009b.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
 
 </html>
