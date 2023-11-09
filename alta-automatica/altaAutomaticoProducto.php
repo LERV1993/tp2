@@ -94,7 +94,7 @@ if ($varsession == null || $varsession == '') {
     require("../includes/config/db-config.php");
 
 
-    $sql = "INSERT INTO tabla_productos (name,sn,cant) VALUES 
+    $sql = "INSERT INTO productos (name,sn,cant) VALUES 
   ('Computadora acrílica zxl 520','7799123456789','25'),
   ('Torre de computos xL','7799789456123','30'),
   ('Monitor Samsung 475RD3','7799147258369','15'),
@@ -122,8 +122,8 @@ if ($varsession == null || $varsession == '') {
     </div>
     
     </section>';
-    } elseif ($conexion->query($sql) === true) {
-
+    } elseif ($resultado->num_rows == 0) {
+        $result = $conexion->query($sql);
         echo '<section> 
 
     <h1>  Carga de Datos Exitosa </h1>

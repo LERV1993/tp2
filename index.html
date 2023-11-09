@@ -27,19 +27,25 @@
 
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">Usuario</label>
-          <input type="email" class="form-control" id="email" placeholder="ingrese su usuario">
+          <input type="email" class="form-control" id="email" placeholder="ingrese su usuario"
+          onkeyup="validarEmail()">
         </div>
+
+        <p class="text-danger" id="emailErr" style="display: none;"> El formato de usuario no es valido.</p>
 
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">Contraseña</label>
-          <input type="password" class="form-control" id="password" placeholder="ingrese su contraseña">
+          <input type="password" class="form-control" id="password" placeholder="ingrese su contraseña"
+          onkeyup="validarPassword()">
         </div>
+
+        <p class="text-danger" id="passwordErr" style="display: none;"> La contraseña debe tener de 8 a 20 caracteres.</p>
 
       </form>
 
       <div class="botones">
 
-        <button class="btn btn-success m-1" id="btnLogin">Ingresar</button>
+        <button class="btn btn-success m-1" id="btnLogin" disabled>Ingresar</button>
         <a class="btn btn-warning m-1" href="/tp2/recuperar/index.html">Recuperar acceso</a>
       </div>
 

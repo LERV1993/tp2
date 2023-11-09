@@ -33,27 +33,31 @@ function obtenerDatos() {
 function filterTable() {
     table_body.innerHTML = "";
     let filterData = productsData.slice(desdeFiltrar * 10, hastaFiltrar * 10);
-    pageActual.textContent = String(desdeFiltrar+1);
+    pageActual.textContent = String(desdeFiltrar + 1);
     createTable(filterData);
 }
 
-function nextPage(){
-    desdeFiltrar += 1;
-    hastaFiltrar += 1;
+function nextPage() {
     maxPage = Math.ceil(productsData.length / 10);
     proxPage = hastaFiltrar;
+    if (proxPage < maxPage) {
+        desdeFiltrar += 1;
+        hastaFiltrar += 1;
+    }
     btnPrevPage.disabled = false;
-    if(maxPage == proxPage){
+    if (proxPage >= maxPage) {
         btnNextPage.disabled = true;
     }
     filterTable();
 }
 
-function prevPage(){
-    desdeFiltrar -= 1;
-    hastaFiltrar -= 1;
+function prevPage() {
+    if (desdeFiltrar > 0) {
+        desdeFiltrar -= 1;
+        hastaFiltrar -= 1;
+    }
     btnNextPage.disabled = false;
-    if(desdeFiltrar == 0){
+    if (desdeFiltrar <= 0) {
         btnPrevPage.disabled = true;
     }
     filterTable();
