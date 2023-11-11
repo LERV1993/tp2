@@ -42,7 +42,7 @@ function enviarCorreo($email, $nuevaContrasena)
     $asunto = "Contraseña restablecida";
     $mensaje = "<h3> Se ha solicitado un reinicio de su contraseña.</h3><p> Su nueva contraseña es: " . $nuevaContrasena . "
     </p> <p>Si no ha solicitado este reinicio por favor de aviso al administrador.</p> <p> De lo contrario
-    ya puede ingresar con la nueva contraseña.</p><p> Cordialmente: Sistema de respuesta automatica - Logistcs Freedom</p>";
+    ya puede ingresar con la nueva contraseña.</p><p> Cordialmente: Sistema de respuesta automática - Logistcs Freedom</p>";
 
     // Cabeceras del correo
     $headers = "From: remitente@example.com\r\n";
