@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="icon" type="image/png" href="../images/favicon.png">
     <title>Logistic freedom</title>
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="../styles/recuperar.css">
@@ -27,20 +27,25 @@
 
             <div class="mb-3">
                 <label for="usuario" class="form-label">Usuario:</label>
-                <input type="email" class="form-control" id="usuario" placeholder="Ingrese el email del usuario">
+                <input type="email" class="form-control" id="email" onkeyup="validarEmail()" placeholder="Ingrese el email del usuario">
             </div>
+
+            <p class="text-danger" id="emailErr" style="display: none;"> El formato de email no  es valido.</p>
 
         </form>
 
         <div class="botones">
 
-            <button class="btn btn-success"> Recuperar acceso</button>
+            <button class="btn btn-success" id="btnRecuperar" onclick="recuperarAcceso()"> Recuperar acceso </button>
+
 
         </div>
 
 
     </section>
 
+
+<script src="recuperar.js"></script>
 </body>
 
 </html>

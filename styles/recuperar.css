@@ -28,6 +28,11 @@ p{
     margin: auto;
 }
 
+#emailErr{
+    width: 100%;
+    margin: 0;
+}
+
 form{
     width: 95%;
     margin: auto;
