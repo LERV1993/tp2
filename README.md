@@ -17,6 +17,7 @@ El sistema cuenta con un apartado de gestion de usuarios para poder generar los 
 El sistema por defecto inicia las tablas necesarias y permite el ingreso al mismo con las siguientes credenciales:
 
 • Usuario: admin@admin.com
+
 • Contraseña: admin123
 
 - El sistema requiere ser usadon con conexión a internet para la utilización de algunas dependencias.
