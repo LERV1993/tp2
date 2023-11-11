@@ -1,7 +1,7 @@
 <?php
 function conectarBaseDeDatos()
 {
-    $servername = "localhost:3306"; // Ojo caso particular de lucas puerto 3308
+    $servername = "localhost:3308"; // Ojo caso particular de lucas puerto 3308
     $username = "root";
     $password = "";
     $dbname = "bd_stock";
@@ -78,12 +78,35 @@ function conectarBaseDeDatos()
     $sql = "SELECT * FROM usuarios WHERE email = '$admin'";
     $result = $conn->query($sql);
     if ($result->num_rows < 1) {
-        $sql ="INSERT INTO usuarios (email, password )VALUE ('$admin', '$passw')";
+        $sql = "INSERT INTO usuarios (email, password )VALUE ('$admin', '$passw')";
         $result = $conn->query($sql);
     }
 
-    
+    //Crear la roles contacto si no existe 
+    $sql = "CREATE TABLE IF NOT EXISTS roles (
+        id int AUTO_INCREMENT PRIMARY KEY,
+        acceso VARCHAR(30),
+        id_usuario varchar(30)
+        )";
+    if ($conn->query($sql) !== TRUE) {
+        die("Error al crear la tabla 'contacto' : " . $conn->error);
+    }
 
+    // Necesitamos el id del admin para ver si existe en roles - Lokitah !
+    $sql = "SELECT id FROM usuarios WHERE email = '$admin'";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+    $id = $row["id"];
+   
+    $sql = "SELECT acceso FROM roles WHERE id_usuario = '$id'";
+    $result = $conn->query($sql);
+    if ($result->num_rows < 1) {
+        $sql = "INSERT INTO roles (id_usuario,acceso)
+        VALUES ('$id', 'alta productos'), ('$id', 'contacto'), 
+        ('$id', 'gestion usuarios'), ('$id', 'reportes'),
+         ('$id', 'revisar contacto'), ('$id', 'stock')";
+         $result = $conn->query($sql);
+    }
 
     // Devolver la conexión
     return $conn;

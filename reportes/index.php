@@ -2,8 +2,13 @@
 session_start();
 error_reporting(0);
 $varsession = $_SESSION['email'];
+$roles = $_SESSION['roles'];
 if ($varsession == null || $varsession == '') {
     header("Location:http://localhost/tp2/");
+}
+
+if (!in_array("reportes", $roles)) {
+    header("Location:http://localhost/tp2/inicio/");
 }
 
 require("../includes/config/db-config.php");
@@ -41,6 +46,7 @@ $conexion->close();
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
 
 
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
@@ -50,11 +56,6 @@ $conexion->close();
 
     <!--font awesome-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-
-
-
-
-
 
 </head>
 
@@ -88,28 +89,48 @@ $conexion->close();
 
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 
-                        <li class="nav-item">
+                        <?php
+
+                        if (in_array("alta productos", $roles)) {
+                            echo '<li class="nav-item">
                             <a class="nav-link" aria-current="page" href="/tp2/alta-productos">Alta de productos</a>
-                        </li>
+                          </li>';
+                        }
 
-                        <li class="nav-item">
+                        if (in_array("gestion usuarios", $roles)) {
+                            echo '<li class="nav-item">
                             <a class="nav-link" href="/tp2/gestion-usuarios/">Gestión de usuarios</a>
-                        </li>
+                          </li>';
+                        }
 
-                        <li class="nav-item">
+                        if (in_array("reportes", $roles)) {
+                            echo '  <li class="nav-item">
                             <a class="nav-link active" href="/tp2/reportes/">Reportes</a>
-                        </li>
+                            </li>';
+                        }
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="/tp2/stock/">Stock</a>
-                        </li>
+                        if (in_array("stock", $roles)) {
+                            echo '<li class="nav-item">
+                          <a class="nav-link" href="/tp2/stock/">Stock</a>
+                          </li>';
+                        }
 
-                        <li class="nav-item">
+                        if (in_array("contacto", $roles)) {
+                            echo '<li class="nav-item">
                             <a class="nav-link" href="/tp2/contacto/">Contacto</a>
-                        </li>
+                          </li>';
+                        }
+
+                        if (in_array("revisar contacto", $roles)) {
+                            echo '<li class="nav-item">
+                            <a class="nav-link" href="/tp2/revisar-contacto/">Revisar contacto</a>
+                          </li>';
+                        }
+
+                        ?>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="/tp2/revisar-contacto/">Revisar contacto</a>
+                            <a class="nav-link" href="/tp2/historia/">Historia</a>
                         </li>
 
                     </ul>
@@ -126,8 +147,11 @@ $conexion->close();
 
 
     <div class="container">
-        <h1> Reportes modificados de Stock </h1>
+
         <div id="fondo" class="row">
+            <h1> Reportes modificados de Stock </h1>
+
+            <hr style="color: gray;margin: 0.4rem auto 2rem auto; width: 95%">
             <div class="col-12">
                 <div class="table-responsive">
                     <table id="tablaMod" class="table table-striped table-bordered" style="width:100%">

@@ -49,7 +49,7 @@ function loguearse() {
 }
 
 function navegarAlHome() {
-    window.location.href = "http://localhost/tp2/inicio/inicio.php";
+    window.location.href = "http://localhost/tp2/inicio/";
 }
 
 function validarEmail() {

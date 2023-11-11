@@ -31,7 +31,7 @@ echo json_encode($productos);
 
 // Endpoint editar productos
 if ($_SERVER["REQUEST_METHOD"] == "PUT") {
-    // Obtener el JSON del cuerpo de la solicitud POST 
+    
     $data = json_decode(file_get_contents("php://input"));
 
     // Verificar si el JSON se decodificó correctamente

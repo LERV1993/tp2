@@ -2,11 +2,15 @@
 session_start();
 error_reporting(0);
 $varsession = $_SESSION['email'];
+$roles = $_SESSION['roles'];
 if ($varsession == null || $varsession == '') {
     header("Location:http://localhost/tp2/");
 }
 
-// session_destroy();
+if (!in_array("contacto", $roles)) {
+    header("Location:http://localhost/tp2/inicio/");
+}
+
 
 if (isset($_POST['submit'])) {
     $nombre = $_POST['name'];
@@ -14,7 +18,6 @@ if (isset($_POST['submit'])) {
     $tel = $_POST['telefono'];
 }
 
-//<?php echo htmlspecialchars($_SERVER['PHP_SELF'])
 
 ?>
 
@@ -40,7 +43,7 @@ if (isset($_POST['submit'])) {
     <nav class="navbar bg-body-tertiary fixed-top" style="padding: 0;">
 
         <div class="container-fluid">
-            
+
             <div>
                 <a class="navbar-brand" href="#">
                     <img class="imageNav" src="../images/favicon.png" alt="logo">
@@ -64,28 +67,49 @@ if (isset($_POST['submit'])) {
 
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 
-                        <li class="nav-item">
+                        <?php
+
+                        if (in_array("alta productos", $roles)) {
+                            echo '<li class="nav-item">
                             <a class="nav-link" aria-current="page" href="/tp2/alta-productos">Alta de productos</a>
-                        </li>
+                            </li>';
+                        }
 
-                        <li class="nav-item">
+                        if (in_array("gestion usuarios", $roles)) {
+                            echo '<li class="nav-item">
                             <a class="nav-link" href="/tp2/gestion-usuarios/">Gestión de usuarios</a>
-                        </li>
+                            </li>';
+                        }
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="/tp2/reportes/">Reportes</a>
-                        </li>
+                        if (in_array("reportes", $roles)) {
+                            echo '  <li class="nav-item">
+                                <a class="nav-link" href="/tp2/reportes/">Reportes</a>
+                                </li>';
+                        }
 
-                        <li class="nav-item">
+                        if (in_array("stock", $roles)) {
+                            echo '<li class="nav-item">
                             <a class="nav-link" href="/tp2/stock/">Stock</a>
-                        </li>
+                            </li>';
+                        }
 
-                        <li class="nav-item">
+                        if (in_array("contacto", $roles)) {
+                            echo '<li class="nav-item">
                             <a class="nav-link active" href="/tp2/contacto/">Contacto</a>
-                        </li>
+                            </li>';
+                        }
+
+                        if (in_array("revisar contacto", $roles)) {
+                            echo '<li class="nav-item">
+                            <a class="nav-link" href="/tp2/revisar-contacto/">Revisar contacto</a>
+                            </li>';
+                        }
+
+
+                        ?>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="/tp2/revisar-contacto/">Revisar contacto</a>
+                            <a class="nav-link" href="/tp2/historia/">Historia</a>
                         </li>
 
                     </ul>

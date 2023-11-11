@@ -2,11 +2,15 @@
 session_start();
 error_reporting(0);
 $varsession = $_SESSION['email'];
+$roles = $_SESSION['roles'];
 if ($varsession == null || $varsession == '') {
     header("Location:http://localhost/tp2/");
 }
 
-// session_destroy();
+if (!in_array("gestion usuarios", $roles)) {
+    header("Location:http://localhost/tp2/inicio/");
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +35,7 @@ if ($varsession == null || $varsession == '') {
     <nav class="navbar bg-body-tertiary fixed-top" style="padding: 0;">
 
         <div class="container-fluid">
-            
+
             <div>
                 <a class="navbar-brand" href="#">
                     <img class="imageNav" src="../images/favicon.png" alt="logo">
@@ -55,28 +59,48 @@ if ($varsession == null || $varsession == '') {
 
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="/tp2/alta-productos">Alta de productos</a>
-                        </li>
+                        <?php
+
+                        if (in_array("alta productos", $roles)) {
+                            echo '<li class="nav-item">
+                                        <a class="nav-link" aria-current="page" href="/tp2/alta-productos">Alta de productos</a>
+                                    </li>';
+                        }
+
+                        if (in_array("gestion usuarios", $roles)) {
+                            echo '<li class="nav-item">
+                                        <a class="nav-link active" href="/tp2/gestion-usuarios/">Gestión de usuarios</a>
+                                    </li>';
+                        }
+
+                        if (in_array("reportes", $roles)) {
+                            echo '  <li class="nav-item">
+                                        <a class="nav-link" href="/tp2/reportes/">Reportes</a>
+                                        </li>';
+                        }
+
+                        if (in_array("stock", $roles)) {
+                            echo '<li class="nav-item">
+                                    <a class="nav-link" href="/tp2/stock/">Stock</a>
+                                    </li>';
+                        }
+
+                        if (in_array("contacto", $roles)) {
+                            echo '<li class="nav-item">
+                                        <a class="nav-link" href="/tp2/contacto/">Contacto</a>
+                                    </li>';
+                        }
+
+                        if (in_array("revisar contacto", $roles)) {
+                            echo '<li class="nav-item">
+                                        <a class="nav-link" href="/tp2/revisar-contacto/">Revisar contacto</a>
+                                    </li>';
+                        }
+
+                        ?>
 
                         <li class="nav-item">
-                            <a class="nav-link active" href="/tp2/gestion-usuarios/">Gestión de usuarios</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="/tp2/reportes/">Reportes</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="/tp2/stock/">Stock</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="/tp2/contacto/">Contacto</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="/tp2/revisar-contacto/">Revisar contacto</a>
+                            <a class="nav-link" href="/tp2/historia/">Historia</a>
                         </li>
 
                     </ul>
@@ -99,52 +123,71 @@ if ($varsession == null || $varsession == '') {
 
         <div class="cardBody">
 
-            <select id="selectModType" class="form-select mb-3" aria-label="Default select example" onchange="cangeForm()">
+            <select id="selectModType" class="form-select mb-3" aria-label="Select tipo de form" onchange="cangeForm()">
                 <option selected>Seleccione tipo de gestion</option>
                 <option value="C">Crear usuario</option>
-                <option value="D">Eliminar usuario</option>
                 <option value="E">Editar usuario</option>
+                <option value="D">Eliminar usuario</option>
             </select>
 
             <form id="formNewUser">
 
                 <div class="mb-3">
-                    <label for="usuario" class="form-label">Usuario</label>
-                    <input type="email" class="form-control" id="usuario" placeholder="Ingrese el email del usuario">
+                    <label for="newUserMail" class="form-label">Usuario:</label>
+                    <input type="email" class="form-control" id="newUserMail" onkeyup="validarEmail()" placeholder="Ingrese el email del usuario">
                 </div>
 
+                <p class="text-danger" id="newUserMailErr" style="display: none;"> El formato de email es invalido o el usuario ya existe.</p>
+
                 <div class="mb-3">
-                    <label for="usuario" class="form-label">Contraseña</label>
-                    <input type="text" class="form-control" id="usuario" placeholder="Ingrese la contraseña">
+                    <label for="newUserPass" class="form-label">Contraseña:</label>
+                    <input type="text" class="form-control" id="newUserPass" onkeyup="validarPassword()" placeholder="Ingrese la contraseña">
                 </div>
+
+                <p class="text-danger" id="newUserPassErr" style="display: none;"> El formato de la contraseña es invalido.</p>
 
                 <label for="exampleFormControlInput1" class="form-label">Permisos</label>
 
+
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="alta-productos">
-                    <label class="form-check-label" for="alta-productos">
+                    <input class="form-check-input newUserAccessCheck" id="check1" name="check1" type="checkbox" value="alta productos">
+                    <label class="form-check-label" for="check1">
                         Alta de productos
                     </label>
                 </div>
 
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="gestion-usuarios">
-                    <label class="form-check-label" for="gestion-usuarios">
+                    <input class="form-check-input newUserAccessCheck" id="check2" name="check2" type="checkbox" value="gestion usuarios">
+                    <label class="form-check-label" for="check2">
                         Gestion de usuarios
                     </label>
                 </div>
 
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="reportes">
-                    <label class="form-check-label" for="reportes">
+                    <input class="form-check-input newUserAccessCheck" id="check3" name="check3" type="checkbox" value="reportes">
+                    <label class="form-check-label" for="check3">
                         Reportes
                     </label>
                 </div>
 
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="stock">
-                    <label class="form-check-label" for="stock">
+                    <input class="form-check-input newUserAccessCheck" id="check4" name="check4" type="checkbox" value="stock">
+                    <label class="form-check-label" for="check4">
                         Stock
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input newUserAccessCheck" id="check5" name="check5" type="checkbox" value="contacto">
+                    <label class="form-check-label" for="check5">
+                        Contacto
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input newUserAccessCheck" id="check6" name="check6" type="checkbox" value="revisar contacto">
+                    <label class="form-check-label" for="check6">
+                        Revisar contacto
                     </label>
                 </div>
 
@@ -152,37 +195,50 @@ if ($varsession == null || $varsession == '') {
 
             <form id="formEditUser" style="display: none;">
 
-                <select id="selectEditUser" class="form-select mb-3" aria-label="Default select example">
-                    <option selected>Seleccione usuario</option>
+                <select id="selectEditUser" class="form-select mb-3" aria-label="Select editar usuario" onchange="validarFormEditarUsuario()">
                 </select>
 
                 <label for="exampleFormControlInput1" class="form-label">Permisos</label>
 
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="alta-productos">
-                    <label class="form-check-label" for="alta-productos">
+                    <input class="form-check-input editUserAccessCheck" name="check7" id="check7" type="checkbox" value="alta productos">
+                    <label class="form-check-label" for="check7">
                         Alta de productos
                     </label>
                 </div>
 
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="gestion-usuarios">
-                    <label class="form-check-label" for="gestion-usuarios">
+                    <input class="form-check-input editUserAccessCheck" name="check8" id="check8" type="checkbox" value="gestion usuarios">
+                    <label class="form-check-label" for="check8">
                         Gestion de usuarios
                     </label>
                 </div>
 
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="reportes">
-                    <label class="form-check-label" for="reportes">
+                    <input class="form-check-input editUserAccessCheck" name="check9" id="check9" type="checkbox" value="reportes">
+                    <label class="form-check-label" for="check9">
                         Reportes
                     </label>
                 </div>
 
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="stock">
-                    <label class="form-check-label" for="stock">
+                    <input class="form-check-input editUserAccessCheck" name="check10" id="check10" type="checkbox" value="stock">
+                    <label class="form-check-label" for="check10">
                         Stock
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input editUserAccessCheck" name="check11" id="check11" type="checkbox" value="contacto">
+                    <label class="form-check-label" for="check11">
+                        Contacto
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input editUserAccessCheck" name="check12" id="check12" type="checkbox" value="revisar contacto">
+                    <label class="form-check-label" for="check12">
+                        Revisar contacto
                     </label>
                 </div>
 
@@ -190,8 +246,7 @@ if ($varsession == null || $varsession == '') {
 
             <form id="formDelUser" style="display: none;">
 
-                <select id="selectEditUser" class="form-select mb-3" aria-label="Default select example">
-                    <option selected>Seleccione usuario a eliminar</option>
+                <select id="selectDeleteUser" class="form-select mb-3" aria-label="Select eliminar usuario" onchange="validarFormEliminarUsuario()">
                 </select>
 
             </form>
@@ -204,18 +259,151 @@ if ($varsession == null || $varsession == '') {
         <footer class="cardFooter">
 
             <div id="btnNewUser" class="botones">
-                <button class="btn btn-success m-1">Crear Usuario</button>
-                <button class="btn btn-danger m-1">Cancelar</button>
+                <!-- Open modal crear usuario -->
+                <button type="button" class="btn btn-success m-1" id="btnCrearUsuario" data-bs-toggle="modal" data-bs-target="#modalCrearUsuario" disabled>
+                    Crear Usuario
+                </button>
+
+                <!-- Open modal reiniciar formulario -->
+                <button type="button" class="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#modalReiniciarFormNewUser">
+                    Reiniciar formulario
+                </button>
+
+                <!-- Modal crear usuario -->
+                <div class="modal fade" id="modalCrearUsuario" tabindex="-1" aria-labelledby="modalCrearUsuarioLabel" aria-hidden="true">
+                    <div class="modal-dialog  modal-dialog-centered">
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="modalCrearUsuarioLabel">Confirme creación</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+
+                            <div class="modal-body">
+                                <p id="textConfirmarUsuario"></p>
+                            </div>
+                            <div class="modal-footer">
+
+                                <button type="button" class="btn btn-success" data-bs-dismiss="modal" onclick="crearUsuario()">
+                                    Crear
+                                </button>
+
+                                <button type="button" class="btn btn-warning" data-bs-dismiss="modal">
+                                    Cancelar
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Modal crear usuario -->
+                <div class="modal fade" id="modalReiniciarFormNewUser" tabindex="-1" aria-labelledby="modalReiniciarFormNewUserLabel" aria-hidden="true">
+                    <div class="modal-dialog  modal-dialog-centered">
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="modalReiniciarFormNewUserLabel">Confirme creación</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+
+                            <div class="modal-body">
+                                <p>
+                                    Está a punto de borrar la información cargada en todos los campos. <br>
+                                    ¿Desea continuar?
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="resetFormnuevoUsuario()">
+                                    Reiniciar
+                                </button>
+
+                                <button type="button" class="btn btn-warning" data-bs-dismiss="modal">
+                                    cancelar
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
 
             <div id="btnEditUser" class="botones" style="display: none;">
-                <button class="btn btn-warning m-1">Editar Usuario</button>
-                <button class="btn btn-danger m-1">Cancelar</button>
+
+                <!-- Open modal editar usuario -->
+                <button type="button" class="btn btn-warning m-1" id="btnEditarUsuarioModal" data-bs-toggle="modal" data-bs-target="#modalEditarUsuario" disabled>
+                    Editar Usuario
+                </button>
+
+                <!-- Modal editar usuario -->
+                <div class="modal fade" id="modalEditarUsuario" tabindex="-1" aria-labelledby="modalEditarUsuarioLabel" aria-hidden="true">
+                    <div class="modal-dialog  modal-dialog-centered">
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="modalEditarUsuarioLabel">Confirme edición</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+
+                            <div class="modal-body">
+                                <p id="textConfirmarEditarUsuario"></p>
+                            </div>
+                            <div class="modal-footer">
+
+                                <button type="button" id="btnEditarUsuario" class="btn btn-warning" data-bs-dismiss="modal" onclick="editarUsuario()" disabled>
+                                    Editar
+                                </button>
+
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                                    Cancelar
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
             <div id="btnDelUser" class="botones" style="display: none;">
-                <button class="btn btn-danger m-1">Eliminar Usuario</button>
-                <button class="btn btn-warning m-1">Cancelar</button>
+
+                <!-- Open modal eliminar usuario -->
+                <button type="button" class="btn btn-danger m-1" id="btnEliminarUsuarioModal" data-bs-toggle="modal" data-bs-target="#modalEliminarUsuario" disabled>
+                    Eliminar Usuario
+                </button>
+
+                <!-- Modal eliminar usuario -->
+                <div class="modal fade" id="modalEliminarUsuario" tabindex="-1" aria-labelledby="modalEliminarUsuarioLabel" aria-hidden="true">
+                    <div class="modal-dialog  modal-dialog-centered">
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="modalEliminarUsuarioLabel">Confirme eliminación</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+
+                            <div class="modal-body">
+                                <p id="textConfirmarEliminarUsuario"></p>
+                            </div>
+                            <div class="modal-footer">
+
+                                <button type="button" id="btnEliminarUsuario" class="btn btn-danger" data-bs-dismiss="modal" onclick="eliminarUsuario()">
+                                    Eliminar
+                                </button>
+
+                                <button type="button" class="btn btn-warning" data-bs-dismiss="modal">
+                                    Cancelar
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
         </footer>

@@ -2,11 +2,11 @@
 session_start();
 error_reporting(0);
 $varsession = $_SESSION['email'];
+$roles = $_SESSION['roles'];
 if ($varsession == null || $varsession == '') {
     header("Location:http://localhost/tp2/");
 }
 
-// session_destroy();
 ?>
 
 
@@ -58,29 +58,51 @@ if ($varsession == null || $varsession == '') {
 
                         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 
-                            <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="/tp2/alta-productos">Alta de productos</a>
-                            </li>
+                            <?php
+
+                            if (in_array("alta productos", $roles)) {
+                                echo '<li class="nav-item">
+                                      <a class="nav-link" aria-current="page" href="/tp2/alta-productos">Alta de productos</a>
+                                      </li>';
+                            }
+
+                            if (in_array("gestion usuarios", $roles)) {
+                                echo '<li class="nav-item">
+                                      <a class="nav-link" href="/tp2/gestion-usuarios/">Gestión de usuarios</a>
+                                      </li>';
+                            }
+
+                            if (in_array("reportes", $roles)) {
+                                echo '  <li class="nav-item">
+                                        <a class="nav-link" href="/tp2/reportes/">Reportes</a>
+                                        </li>';
+                            }
+
+                            if (in_array("stock", $roles)) {
+                                echo '<li class="nav-item">
+                                      <a class="nav-link" href="/tp2/stock/">Stock</a>
+                                      </li>';
+                            }
+
+                            if (in_array("contacto", $roles)) {
+                                echo '<li class="nav-item">
+                                      <a class="nav-link" href="/tp2/contacto/">Contacto</a>
+                                      </li>';
+                            }
+
+                            if (in_array("revisar contacto", $roles)) {
+                                echo '<li class="nav-item">
+                                      <a class="nav-link" href="/tp2/revisar-contacto/">Revisar contacto</a>
+                                      </li>';
+                            }
+
+
+                            ?>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="/tp2/gestion-usuarios/">Gestión de usuarios</a>
+                                <a class="nav-link" href="/tp2/historia/">Historia</a>
                             </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="/tp2/reportes/">Reportes</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="/tp2/stock/">Stock</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="/tp2/contacto/">Contacto</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="/tp2/revisar-contacto/">Revisar contacto</a>
-                            </li>
+                            
                         </ul>
 
                     </div>
@@ -100,8 +122,6 @@ if ($varsession == null || $varsession == '') {
                 <div>
 
                     <h1>Logistics Freedom</h1>
-
-
 
                     <hr style="size: 6px; color: white" />
                     <a href="/tp2/inicio/algoDeHistoria.html" style="color: white; text-decoration: none;"><i class="fa-solid fa-people-arrows"></i>
@@ -125,10 +145,6 @@ if ($varsession == null || $varsession == '') {
 
 
     </div>
-
-
-
-
 
 
     <script src="https://kit.fontawesome.com/ce1f10009b.js" crossorigin="anonymous"></script>
