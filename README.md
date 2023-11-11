@@ -13,6 +13,7 @@ Desarrollo de sistema web con los contenidos vistos
 Logistic Freedom, es un sistema web que pensado para ayudar a liberar a los usuarios que trabajan sobre la responsabilidad de manejar un stock.
 Permite control y visualización sobre los insumos como asi también la descarga de reportes y envío de consultas.
 El sistema cuenta con un apartado de gestion de usuarios para poder generar los permisos que se consideren sean los correspondientes a cada usuario que se le da acceso al sistema.
+Los usuarios sin los permisos correspondientes a cada sección no podrán abrirla ni tendran accesos a ella.
 
 El sistema por defecto inicia las tablas necesarias y permite el ingreso al mismo con las siguientes credenciales:
 
