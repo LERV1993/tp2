@@ -13,13 +13,11 @@ if (!in_array("reportes", $roles)) {
 
 require("../includes/config/db-config.php");
 
-
 $consulta = "SELECT * FROM mod_stock";
 $resultado = $conexion->prepare($consulta);
 $resultado->execute();
 $result = $resultado->get_result();
-$usuarios = $result->fetch_all(MYSQLI_ASSOC);
-
+$modificaciones = $result->fetch_all(MYSQLI_ASSOC);
 
 $result->free();
 $conexion->close();
@@ -146,7 +144,7 @@ $conexion->close();
 
 
 
-    <div class="container">
+
 
         <div id="fondo" class="row">
             <h1> Reportes modificados de Stock </h1>
@@ -173,51 +171,28 @@ $conexion->close();
 
                         <tbody>
                             <?php
-                            foreach ($usuarios as $usuario) {
+                            foreach ($modificaciones as $modi) {
+                                echo "<tr>";
+                                echo "<td>{$modi['id']}</td>";
+                                echo "<td>{$modi['id_old']}</td>";
+                                echo "<td>{$modi['name_old']}</td>";
+                                echo "<td>{$modi['sn_old']}</td>";
+                                echo "<td>{$modi['cant_old']}</td>";
+                                echo "<td>{$modi['id_new']}</td>";
+                                echo "<td>{$modi['name_new']}</td>";
+                                echo "<td>{$modi['sn_new']}</td>";
+                                echo "<td>{$modi['cant_new']}</td>";
+                                echo "<td>{$modi['fecha']}</td>";
+                                echo "<td>{$modi['motivo']}</td>";
+                                echo "</tr>";
                             }
                             ?>
-                            <tr>
-                                <td>
-                                    <?php echo $usuario['id'] ?>
-                                </td>
-                                <td>
-                                    <?php echo $usuario['id_old'] ?>
-                                </td>
-                                <td>
-                                    <?php echo $usuario['name_old'] ?>
-                                </td>
-                                <td>
-                                    <?php echo $usuario['sn_old'] ?>
-                                </td>
-                                <td>
-                                    <?php echo $usuario['cant_old'] ?>
-                                </td>
-                                <td>
-                                    <?php echo $usuario['id_new'] ?>
-                                </td>
-                                <td>
-                                    <?php echo $usuario['name_new'] ?>
-                                </td>
-                                <td>
-                                    <?php echo $usuario['sn_new'] ?>
-                                </td>
-                                <td>
-                                    <?php echo $usuario['cant_new'] ?>
-                                </td>
-                                <td>
-                                    <?php echo $usuario['fecha'] ?>
-                                </td>
-                                <td>
-                                    <?php echo $usuario['motivo'] ?>
-                                </td>
-                            </tr>
-
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-    </div>
+
 
     <!-- jQuery, Popper.js, Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
