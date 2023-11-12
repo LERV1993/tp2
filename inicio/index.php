@@ -124,7 +124,7 @@ if ($varsession == null || $varsession == '') {
                     <h1>Logistics Freedom</h1>
 
                     <hr style="size: 6px; color: white" />
-                    <a href="/tp2/inicio/algoDeHistoria.html" style="color: white; text-decoration: none;"><i class="fa-solid fa-people-arrows"></i>
+                    <a href="/tp2/historia/" style="color: white; text-decoration: none;"><i class="fa-solid fa-people-arrows"></i>
                         <h3>Acerca de
                             nosotros</h3>
                     </a>
